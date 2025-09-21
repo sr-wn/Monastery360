@@ -9,7 +9,7 @@ import PanoramaViewer from "@/components/panorama-viewer"
 import InteractiveMap from "@/components/interactive-map"
 import EventCalendar from "@/components/event-calendar"
 import DigitalArchive from "@/components/digital-archive"
-import SearchBar from "@/components/search-bar"
+import AISearchBar from "@/components/ai-search-bar"
 
 export default function HomePage() {
   return (
@@ -469,15 +469,33 @@ export default function HomePage() {
       </section>
 
       {/* Search Functionality */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-balance">Search Monastery360</h2>
-            <p className="text-lg text-muted-foreground text-pretty max-w-2xl mx-auto">
-              Find information about monasteries, festivals, and cultural artifacts with our intelligent search
+          <div className="text-center space-y-6 mb-16">
+            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-balance bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Search Monastery360
+            </h2>
+            <p className="text-xl text-gray-600 text-pretty max-w-3xl mx-auto leading-relaxed">
+              Discover archives, monasteries, festivals, and cultural artifacts with our AI-powered intelligent search
             </p>
+            <div className="flex flex-wrap justify-center gap-3 mt-6">
+              <span className="px-4 py-2 bg-white/80 text-blue-700 rounded-full text-sm font-medium shadow-sm">
+                📚 Digital Archives
+              </span>
+              <span className="px-4 py-2 bg-white/80 text-green-700 rounded-full text-sm font-medium shadow-sm">
+                🏛️ Monasteries
+              </span>
+              <span className="px-4 py-2 bg-white/80 text-purple-700 rounded-full text-sm font-medium shadow-sm">
+                🎉 Festivals
+              </span>
+              <span className="px-4 py-2 bg-white/80 text-orange-700 rounded-full text-sm font-medium shadow-sm">
+                🎨 Artifacts
+              </span>
+            </div>
           </div>
-          <SearchBar />
+          <div className="w-full">
+            <AISearchBar className="w-full" />
+          </div>
         </div>
       </section>
 

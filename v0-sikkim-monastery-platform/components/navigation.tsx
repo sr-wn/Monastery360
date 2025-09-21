@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Badge } from "@/components/ui/badge"
-import { Menu, Camera, MapPin, BookOpen, Calendar, Home, LayoutDashboard } from "lucide-react"
+import { Menu, Camera, MapPin, BookOpen, Calendar, Home, LayoutDashboard, Search } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 

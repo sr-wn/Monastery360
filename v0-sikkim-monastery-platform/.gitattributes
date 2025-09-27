@@ -1,0 +1,73 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Images
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.svg text eol=lf
+
+# Archives
+*.zip binary
+*.tar binary
+*.gz binary
+
+# Executables
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+
+# Java
+*.java text eol=lf
+*.class binary
+
+# Maven
+pom.xml text eol=lf
+*.jar binary
+
+# Node.js
+package.json text eol=lf
+package-lock.json text eol=lf
+yarn.lock text eol=lf
+pnpm-lock.yaml text eol=lf
+
+# Next.js
+.next/ export-ignore
+out/ export-ignore
+
+# Build artifacts
+target/ export-ignore
+build/ export-ignore
+dist/ export-ignore
+
+# Dependencies
+node_modules/ export-ignore
+
+# IDE
+.vscode/ export-ignore
+.idea/ export-ignore
+
+# OS
+.DS_Store export-ignore
+Thumbs.db export-ignore
+
+# Logs
+*.log export-ignore
+logs/ export-ignore
+
+# Environment files
+.env* export-ignore

@@ -1,0 +1,793 @@
+import jsPDF from 'jspdf'
+
+// Archive report mappings based on the Digital Archive report.txt file
+const archiveReports = {
+  "manuscript-001": {
+    title: "Kangyur Manuscript Collection — History, Tradition, and Report",
+    content: `Below is a consolidated, readable report on the Kangyur (Tibetan: bka' 'gyur) — the canonical collection of Buddhist scriptures regarded as the words of the Buddha — covering its origin, development, physical/manuscript traditions, major recensions/editions, how it's used in Tibetan religious life, important collections and preservation work, and modern scholarly/digitization projects.
+
+Executive Summary
+
+The Kangyur is the Tibetan "translated words" corpus — texts traditionally attributed to the Buddhas — and one half of the Tibetan Buddhist canon (the other half is the Tengyur, commentarial works). It was assembled over many centuries (beginning in the 7th–9th centuries with major stepping-stones in the 11th–14th centuries) into multiple recensions and physical editions (manuscripts and woodblock printings). Several regional printings (Narthang, Derge, Lhasa, Phukdrak, Yongle/Peking, Cone, Stog Palace, etc.) survive and underlie modern scholarly editions and catalogues. The Kangyur remains a living corpus used daily in monasteries (study, ritual, liturgy) and is the subject of current preservation and comparative-text projects.
+
+1. What the Kangyur is (definition & scope)
+
+Definition: Kangyur (Tib. bka' 'gyur) literally "Translated Word(s)" — the collection of texts believed to record the Buddha's own teachings, translated into Tibetan from Sanskrit, Prakrit, Chinese and other sources. It is paired with the Tengyur (bstan 'gyur), the commentarial corpus.
+
+Contents & size: The number of works varies by recension; typical Kangyurs contain roughly 800–1,100 texts across many volumes, including sūtras, vinaya, Prajñāpāramitā texts, various Mahāyāna sūtras, and a large body of tantras. Different editors/monasteries added or removed works, so there is no single fixed "Kangyur."
+
+2. Historical development — a concise timeline
+
+Early translations (7th–9th c.): Buddhist scriptures began to be translated into Tibetan during the imperial period (7th–9th centuries) when Indian scholars and Tibetan translators worked together. Early cataloguing and standardization efforts date from this era (e.g., Mahāvyutpatti glossaries around the early 9th c.).
+
+Medieval compilation & standardization (11th–14th c.): From the 11th century onward many translations and recensions accumulated; major cataloguing and recensions were compiled later (notably work associated with figures such as Bu-ston Rinchen Drub and other scholars). Local monastery workshops and royal sponsorship contributed to new printings and copies.
+
+Block-printing age & imperial printings (14th–15th c. and later): Several canonical printings were produced with woodblocks — notably the Narthang, Derge, Phukdrak, Lhasa, and the Yongle (1410) imperial Kangyur printed in Nanjing for the Tibetan community under the Yongle Emperor — important for textual transmission and for survivals held in collections today.
+
+Modern cataloguing & comparative projects (20th–21st c.): Scholars and institutions have produced collations, comparative Kangyur editions, and catalogs that map differences among recensions; digitization projects and endangered-archives surveys have documented regional manuscript holdings (Dunhuang, Ladakh, Tabo, Himalayan monasteries).
+
+3. Major recensions / editions (what to look for)
+
+Different named editions are usually identified by place of printing or monastery. Principal examples often cited in scholarship:
+
+Narthang (Snar thang) — an early and influential printing/corpus associated with Snar Thang monastery; many later editions derive from its lineage.
+
+Derge (sde dge) — produced in Denkar / Derge (Kham), famous for its high-quality woodblock printing and the Derge Parkhang workshop. Widely used and preserved.
+
+Phukdrak (Phudrak) — another important lineage that may lie outside the Old Narthang family.
+
+Lhasa editions — multiple Lhasa printings/recensions circulated and influenced canonical organization.
+
+Yongle Kangyur (1410) — a historic early printed set produced under Ming imperial patronage (often referenced as the Yongle edition), examples of which survive in museums and Tibetan monasteries. The Yongle printing is significant for the spread and preservation of canonical woodblock sets.
+
+Because editors varied in which texts they included/excluded (especially questionable works or late additions), textual comparisons across recensions is a major part of Kangyur scholarship.
+
+4. Physical/manuscript and printing traditions
+
+Formats: Kangyur texts exist as hand-copied loose-leaf manuscripts (long horizontal folios wrapped in cloth), boxed sets of loose folios, or as bound printed volumes from woodblock print shops. Typical Tibetan folio format uses long rectangular leaves with text in two columns.
+
+Woodblock printing: Monasteries often established block printing workshops; carving the blocks was an expensive, communal labor that preserved texts for centuries. Derge and Narthang are famous workshops. Imperial printings (Yongle) show Sino-Tibetan patronage of such printing.
+
+Decoration & ritual care: High-status Kangyur sets can be housed in painted wooden boxes, sometimes with textile wrappings; folios may have gilt edges or presentation inscriptions. A Kangyur is treated ritually — it is revered and used as an object of veneration as well as study.
+
+5. Role and use in monastic life and practice
+
+Study & exegesis: The Kangyur is the core corpus for scriptural citation and is the foundation of monastic study. Monastics memorize, recite, and study these texts; the Tengyur provides commentaries used to interpret Kangyur passages.
+
+Liturgy & puja: Many sūtras and tantras from Kangyur are recited in ritual contexts; sets are used in liturgical cycles and public recitations. The physical set itself is often an object of consecration.
+
+6. Important collections, manuscripts & preservation projects
+
+Monastery holdings across Tibet/Himalaya: Many monasteries in Tibet, Kham, Amdo, Ladakh, Sikkim, Bhutan and Mongolia preserve local Kangyur sets (handwritten and printed). Regional variants (e.g., Tawang, Ladakh) preserve localized textual traditions.
+
+Western & museum collections: Major institutions (British Library, Library of Congress, Rubin Museum, local university special collections) hold Kangyur sets and fragments (including Dunhuang manuscripts and Yongle printed boxes). These collections have been central to scholarship and digitization.
+
+Endangered Archives Programme & field surveys: Projects such as the British Library's Endangered Archives Programme and academic surveys have documented and digitized at-risk Kangyur manuscripts from Himalayan monasteries and archives.
+
+7. Modern scholarship, catalogues, and digital projects
+
+Comparative Kangyur projects & catalogues: Recent scholarly work produces comparative editions, catalogs, and cross-recension tools (e.g., A Catalogue of the Comparative Kangyur), which map text-by-text correspondences among recensions and correct earlier table-of-contents errors. These are central for textual criticism.
+
+Translation & accessibility projects: Organizations such as 84000 are working to translate and make canonical Tibetan texts available in modern languages with scholarly apparatus. These projects place emphasis on rigorous translation of sūtras/tantras and on accessible, scholarly presentation.
+
+8. Typical research/curatorial questions & recommended approaches
+
+If you or an institution is researching or conserving a Kangyur set, consider:
+
+Identify the recension/printing: look for colophons, printer's marks, set titles, and page/folio counts; this will indicate whether it's Derge, Narthang, Phukdrak, Yongle, etc. (many catalogs and online resources can help).
+
+Catalog & photograph: create a folio-level inventory with high-resolution images and note any marginalia, seals, or ownership inscriptions (these can reveal provenance).
+
+Conservation needs: assess paper condition, insect damage, ink flaking; prioritize environmental controls, digitization (to reduce handling), and trained conservation. Many endangered archives projects can provide workflows and support.
+
+Textual comparison: if your interest is textual history, collaborate with scholars running comparative Kangyur projects or use published catalogs that cross-reference multiple recensions.
+
+9. Short annotated bibliography / key resources (starting points)
+
+84000 — knowledge base and project pages on Kangyur/Tengyur (overview and subject articles).
+
+Wikipedia — useful orienting article on Tibetan Buddhist canon (history, recensions, divisions). (Good for a quick summary; follow up with primary sources for research.)
+
+A Catalogue of the Comparative Kangyur — scholarly catalog and cross-recension apparatus (detailed resource for textual critics).
+
+Rubin Museum / museum catalogue pages — examples and images of Yongle/Kangyur cases and historical printings.
+
+Endangered Archives Programme (EAP) and university reports on Himalayan manuscript holdings and digitization projects (field reports; listing of local Kangyur holdings).
+
+10. Conclusion — why the Kangyur matters
+
+The Kangyur is both an object (manuscripts, woodblocks, printed sets) and a textual tradition (an evolving corpus with many regional forms). It is central to Tibetan Buddhist textual culture, ritual life, and scholarship. Ongoing cataloguing, comparative editions, and digitization projects are making the variants and histories of the Kangyur more accessible while helping conserve fragile physical sets.`
+  },
+  "mural-002": {
+    title: "Wheel of Life (Bhavachakra) Mural — History, Tradition, and Report",
+    content: `1. Overview
+
+Name: Wheel of Life (Bhavachakra, Sanskrit; Tib. 'khor lo bde mchog)
+Type: Mural painting / sacred visual representation
+Location: Typically at monastery entrances, temple walls, or in teaching halls in Tibetan, Himalayan, and other Buddhist regions
+Purpose: A visual teaching tool illustrating the Buddhist understanding of existence, karma, and samsara (the cycle of birth and rebirth)
+
+2. Historical Background
+
+Origins:
+The concept of the Bhavachakra originates in early Indian Buddhism, with textual references in Sarvastivada and Mahayana sources (c. 1st–5th centuries CE). Early representations appear in Indian caves (Ajanta, Ellora) and in Nepalese and Tibetan art from the 7th century onwards.
+
+Transmission to Tibet:
+Tibetan Buddhists adopted the mural during the 7th–9th centuries, when Buddhist iconography was transmitted along with Sanskrit texts and tantric practices. Monasteries commissioned murals to educate monks and laypeople visually, complementing oral and textual teachings.
+
+Notable Historical Examples:
+
+8th–17th century monasteries in Tibet and Sikkim often include large-scale Bhavachakra murals at entrance walls.
+
+Pemayangtse Monastery (Sikkim) features a famous 17th-century mural illustrating the six realms and the twelve links of dependent origination.
+
+3. Symbolism and Components
+
+The Bhavachakra mural is rich in symbolic meaning, functioning as both a philosophical diagram and a ritual teaching aid.
+
+a. Central hub
+
+Three poisons: At the center, a pig (ignorance), snake (anger), and rooster (desire/attachment) bite each other's tails.
+
+Significance: These drive the cycle of samsara (birth, death, rebirth).
+
+b. Second layer
+
+Karma wheel: Often depicts beings ascending or descending according to their past actions.
+
+Meaning: Illustrates the law of cause and effect — good actions lead to higher rebirths, negative actions to lower.
+
+c. Outer layer
+
+Six realms of existence (lokas):
+
+Gods (Devas) — pleasure, but subject to impermanence
+
+Demigods (Asuras) — jealousy, struggle
+
+Humans — unique opportunity for liberation
+
+Animals — ignorance, servitude
+
+Hungry ghosts (Pretas) — craving, suffering
+
+Hell beings (Narakas) — intense suffering
+
+d. Periphery
+
+Twelve Nidanas (links of dependent origination): A circular depiction of the chain of causes that lead to rebirth, starting with ignorance and ending in old age and death.
+
+e. Outer figure
+
+Yama, the Lord of Death:
+Holding the wheel, representing impermanence and inevitability of death.
+Sometimes portrayed with a fearsome expression to remind viewers of samsara's inescapable nature.
+
+4. Religious and Educational Function
+
+Teaching tool: Mural functions as a visual catechism, conveying complex doctrinal concepts such as karma, dependent origination, and the six realms.
+
+Meditation aid: Monks and practitioners contemplate the mural to understand impermanence, suffering, and the path to liberation.
+
+Ritual context: Sometimes incorporated into monastic festivals or guided teachings; may be consecrated by senior lamas.
+
+5. Artistic Tradition
+
+Medium:
+Mineral pigments on plaster walls or canvas; occasionally gold leaf highlights; natural dyes for color.
+
+Stylistic features:
+
+Bold colors and clear compartmentalization to aid understanding
+
+Figures in traditional Tibetan iconography
+
+Textual labels in Tibetan or Sanskrit for realms, links, and symbolic objects
+
+Regional variation:
+
+Sikkimese murals often include local flora and architectural motifs
+
+Tibetan murals may have elaborate border decorations, thangka-style framing
+
+Scale: Usually large, covering full entrance walls or prominent hall surfaces
+
+6. Preservation and Conservation
+
+Challenges:
+
+Exposure to sunlight, humidity, and smoke from butter lamps
+
+Deterioration of natural pigments over centuries
+
+Risk from renovations or political upheavals
+
+Conservation methods:
+
+Controlled humidity and light conditions
+
+Documentation via high-resolution photography and digital scanning
+
+Restoration by trained iconographers following traditional techniques
+
+Digitization projects: Initiatives in Tibet, Sikkim, Bhutan, and Nepal are cataloging and preserving high-resolution images of Bhavachakra murals.
+
+7. Cultural Significance
+
+Educational: Introduces novices and visitors to Buddhist cosmology and moral philosophy
+
+Devotional: Reflects reverence for the teachings; often consecrated and treated as sacred
+
+Philosophical: Integrates the teachings of impermanence, suffering, and liberation into visual form, reinforcing Mahayana and Vajrayana doctrines
+
+Cross-cultural influence: Found throughout Himalayan Buddhist regions (Nepal, Bhutan, Sikkim, Ladakh) and incorporated into contemporary Buddhist education worldwide`
+  },
+  "artifact-003": {
+    title: "Ritual Bell (Ghanta) and Dorje (Vajra) Set — History, Tradition, and Report",
+    content: `1. Overview
+
+Names:
+
+Dorje / Vajra (Tib. rdo rje, Sanskrit: vajra)
+
+Ghanta / Bell (Tib. drilbu, Sanskrit: ghanta)
+
+Type: Ritual instruments used in Tibetan Buddhism, particularly in Vajrayana (Tantric) practice.
+
+Purpose: Symbolize the inseparability of wisdom and compassion, central pillars of Buddhist enlightenment.
+
+2. Historical Background
+
+Origins:
+
+The vajra originates in Indian Vedic and Buddhist traditions as a thunderbolt or diamond symbol. In Buddhism, it represents indestructible reality, skillful means, and compassion.
+
+The bell (ghanta) represents śūnyatā (emptiness) and the wisdom aspect of enlightenment.
+
+Transmission to Tibet:
+
+Introduced along with tantric texts during the 7th–9th centuries.
+
+By the 16th century, sets became standardized in Tibetan monastic rituals, particularly in Kham, Amdo, and Sikkim.
+
+Regional Examples:
+
+Tashiding Monastery (Sikkim) houses a 16th-century ceremonial set, often cast in bronze or brass with intricate carvings and sometimes gilding.
+
+Variations in style exist between Derge, Lhasa, and Bhutanese workshops, reflecting local artistic traditions.
+
+3. Symbolism
+
+Instrument	Symbolism
+Dorje (Vajra)	Compassion, skillful means, indestructibility of truth, method aspect of enlightenment. Often represents the masculine principle.
+Ghanta (Bell)	Wisdom, emptiness, insight into the nature of reality, feminine principle.
+Union in Ritual	Held together in hand (dorje in right, bell in left) during tantric rituals, symbolizing the inseparability of wisdom and compassion — essential for achieving enlightenment.
+
+Iconography:
+
+Dorje: Four-pronged (sometimes double-pronged) with a central sphere representing the unchanging essence of reality.
+
+Bell: Hollow with engraved mantras, lotus motifs, and sometimes a vajra finial on the handle.
+
+4. Ritual Use
+
+Ceremonial Practices:
+
+Used in pujas, meditation, tantric initiations, and fire offerings.
+
+Bell is sounded to mark ritual stages, signal mantra recitation, or sanctify space.
+
+Meditative Significance:
+
+Practitioners hold the set during visualization practices to integrate compassion (dorje) with wisdom (bell).
+
+Encourages inner cultivation of the two key aspects of enlightenment.
+
+Monastic Training:
+
+Novices learn proper handling, gestures, and sounds associated with each instrument.
+
+Correct use is considered a prerequisite for certain tantric rituals.
+
+5. Material and Artistic Tradition
+
+Materials: Bronze, brass, copper, or alloys; sometimes gilded.
+
+Craftsmanship:
+
+Dorjes and bells are often cast or hammered, engraved with sacred symbols, deities, or mantras.
+
+Decorative motifs include lotus petals, vajra heads, dragons, and Sanskrit inscriptions.
+
+Size: Varies from small handheld instruments to large ceremonial sets for temples.
+
+Aesthetic Considerations: Functional yet symbolic — balance between visual beauty, acoustic quality, and ritual efficacy.
+
+6. Preservation and Conservation
+
+Challenges:
+
+Corrosion, tarnishing of metal over time.
+
+Loss or damage to delicate engraved details.
+
+Wear from repeated handling during rituals.
+
+Conservation Approaches:
+
+Regular cleaning with non-abrasive methods; avoidance of chemicals that may damage metal.
+
+Storage in padded boxes or silk wrappings when not in use.
+
+Documentation of historic sets for museum or monastic archives.
+
+Digitization and Research:
+
+Museums and monasteries have begun photographing and cataloging historic sets for reference, preservation, and scholarly study.
+
+7. Cultural and Religious Significance
+
+Central to Vajrayana practice: The bell and dorje symbolize the core tantric principle of method and wisdom.
+
+Educational: Used to teach novices and laypeople about the integration of compassion and wisdom.
+
+Artistic Heritage: Represents centuries of metallurgical and artistic craftsmanship in Himalayan regions.
+
+Ritual Identity: Possession of a proper set is necessary for participation in high-level ceremonies; often consecrated by senior lamas before use.`
+  },
+  "manuscript-004": {
+    title: "Prajnaparamita Sutra Manuscript — History, Tradition, and Report",
+    content: `1. Overview
+
+Name: Prajñāpāramitā Sūtra (Perfection of Wisdom)
+Type: Manuscript / sacred text
+Language: Originally Sanskrit; widely translated into Tibetan, Chinese, Mongolian, and other Asian languages
+Location: Monastic libraries across Tibet, Sikkim, Nepal, Bhutan, and Himalayan monasteries
+
+Purpose: Core Mahayana text exploring emptiness (śūnyatā) and the philosophical foundation of wisdom and liberation. It is used for study, recitation, and meditation.
+
+2. Historical Background
+
+Origins:
+
+Emerged in India between the 1st and 4th centuries CE within Mahayana Buddhism.
+
+Earliest Sanskrit manuscripts were composed in various lengths: 100,000, 25,000, and 8,000 lines (long, medium, and short versions).
+
+Transmission to Tibet:
+
+Entered Tibet during the 7th–9th centuries with the first wave of translations by scholars and Indian pandits.
+
+Tibetan translations became foundational for monastic curricula and debate practices.
+
+Historical Manuscripts:
+
+19th-century hand-copied manuscripts, such as the one at Enchey Monastery, exemplify the meticulous tradition of copying sutras on long folios using ink and mineral pigments.
+
+Often copied by monks for study, ritual use, or merit-making (creating a copy is considered a pious act).
+
+3. Textual Content
+
+Core Themes:
+
+Emptiness (śūnyatā): All phenomena lack inherent existence.
+
+Perfection of Wisdom: Insight into emptiness is essential for enlightenment.
+
+Bodhisattva Path: Guides the practitioner in cultivating compassion and wisdom.
+
+Six Perfections (Paramitas): Generosity, ethics, patience, effort, meditation, wisdom.
+
+Philosophical Importance:
+
+Forms the basis for Madhyamaka philosophy (Nagarjuna) and later Mahayana commentaries.
+
+Central to Tibetan scholastic debate, memorization, and textual exegesis.
+
+4. Manuscript Tradition
+
+Material:
+
+Long horizontal Tibetan folios made of handmade paper or palm leaves.
+
+Ink: black for main text, red for headings, verse numbers, or punctuation.
+
+Physical Features:
+
+Sometimes illuminated with decorative borders, auspicious symbols, or protective cloth covers.
+
+Bound in sets of folios wrapped in cloth or housed in wooden boxes in monastery libraries.
+
+Scribal Practice:
+
+Copying is considered meritorious, often done by junior monks under supervision.
+
+Attention to exact replication ensures accuracy of philosophical teachings.
+
+5. Monastic and Ritual Use
+
+Study:
+
+Read in debate classes and scholastic instruction.
+
+Serves as a source text for commentaries in the Tengyur.
+
+Recitation:
+
+Recited during ritual ceremonies and merit-making practices.
+
+Enables contemplative meditation on the nature of emptiness.
+
+Merit-Making:
+
+Copying or sponsoring a manuscript is a religious act of generating merit for the scribe and patron.
+
+6. Artistic and Calligraphic Tradition
+
+Calligraphy:
+
+Uniform script, often in Uchen script (Tibetan block script), ensuring legibility for study and ritual.
+
+Decorative Elements:
+
+Red ink used to separate sections, indicate sutra titles, or highlight auspicious syllables.
+
+Occasionally embellished with small mandalas or symbolic motifs at the start/end of folios.
+
+Durability:
+
+Handmade paper treated to resist humidity; careful storage ensures survival over centuries.
+
+7. Preservation and Conservation
+
+Challenges:
+
+Fragile paper, ink fading, insect damage, moisture, and handling wear.
+
+Risk of loss due to natural disasters or political upheavals.
+
+Conservation Strategies:
+
+Controlled storage (temperature and humidity)
+
+Digital photography and cataloging for research and preservation
+
+Use of archival-quality wrappers and boxes
+
+Digitization Projects:
+
+Many Himalayan monasteries and libraries collaborate with scholars to digitize Prajnaparamita manuscripts, making them accessible for study while protecting the originals.
+
+8. Cultural and Religious Significance
+
+Foundational Mahayana text: Guides meditation, philosophy, and practice.
+
+Educational Role: Central in monastic education, shaping the intellectual life of monks and scholars.
+
+Spiritual Merit: Copying, studying, and reciting the sutra is a meritorious act, believed to contribute to enlightenment.
+
+Influence Across Asia: Translated and revered throughout Tibet, Nepal, Bhutan, Mongolia, China, and Japan.`
+  },
+  "photo-005": {
+    title: "Historical Monastery Construction in Sikkim — History, Tradition, and Report",
+    content: `1. Overview
+
+Subject: Construction and architectural features of Sikkimese monasteries
+Type: Photograph / historical documentation
+Location: Dubdi Monastery, Pemayangtse Monastery, Enchey Monastery, and other Sikkimese monasteries
+Purpose: Document traditional Tibetan-style architecture, artistic details, and historical evolution of monastic complexes
+
+2. Historical Background
+
+Origins:
+
+Monasticism in Sikkim was introduced in the 17th century, heavily influenced by Tibetan Buddhist traditions, particularly the Nyingma and Kagyu schools.
+
+Early monasteries served as centers for spiritual practice, education, and cultural preservation.
+
+Construction Periods:
+
+Most Sikkimese monasteries were constructed between the 16th and 18th centuries, with some original foundations dating back to the early 17th century.
+
+Reconstruction efforts occurred in the 20th century to preserve heritage while accommodating modern needs.
+
+Notable Monasteries:
+
+Dubdi Monastery (1701): First monastery in Sikkim, Nyingma school, perched on a hilltop.
+
+Pemayangtse Monastery (1705): Known for elaborate murals and ritual halls.
+
+Enchey Monastery: Prominent center for Nyingma teachings and festivals.
+
+3. Architectural Features
+
+Tibetan-style Design Elements:
+
+Sloping golden roofs: Designed to withstand heavy Himalayan snowfall and visually signify sanctity.
+
+Intricately carved wooden windows and doors: Often painted with auspicious symbols or deities.
+
+Stone or brick walls: Sometimes adorned with murals (thangkas painted on walls) and frescoes.
+
+Courtyards and assembly halls: Central spaces for prayer, festivals, and teachings.
+
+Structural Layout:
+
+Main temple (Gompa) hall: Houses primary deity images and ritual spaces.
+
+Residential quarters: Monks' living areas, often connected via corridors around central courtyards.
+
+Library / scripture rooms: Store Kangyur, Tengyur, and other sacred texts.
+
+Stupas / Chortens: Symbolic structures for reliquaries and sacred objects.
+
+4. Cultural and Religious Significance
+
+Centers of Learning: Monasteries served as educational institutions, teaching sutras, tantra, philosophy, and ritual practice.
+
+Ritual Hubs: Used for daily pujas, meditation, initiations, and annual festivals.
+
+Artistic Heritage: Frescoes, murals, and carved woodwork preserve iconography, cultural motifs, and historical narratives.
+
+Community Identity: Monasteries reinforce local identity, spiritual cohesion, and continuity of Tibetan Buddhist culture in Sikkim.
+
+5. Historical Documentation
+
+Photographs and Records:
+
+Early 20th-century photographs, such as the 1920s image of Dubdi Monastery, capture the original construction style and spatial organization.
+
+Serve as reference points for restoration and reconstruction while maintaining historical authenticity.
+
+Reconstruction Efforts:
+
+20th-century reconstructions preserved traditional aesthetics while reinforcing structural integrity.
+
+Use of modern materials (reinforced concrete) in hidden structural elements, while preserving Tibetan-style roofs, windows, and wall murals.
+
+6. Preservation and Conservation
+
+Challenges:
+
+Exposure to Himalayan weather conditions (rain, snow, humidity)
+
+Aging of wooden elements and wall murals
+
+Risk from modernization or inappropriate renovations
+
+Conservation Approaches:
+
+Maintain original roof lines, murals, and decorative carvings
+
+Employ traditional artisans for restoration
+
+Archive historical photographs and construction drawings for reference
+
+Documentation:
+
+Modern surveys document floor plans, material usage, and mural condition
+
+Photographic archives support educational and heritage projects
+
+7. Artistic and Cultural Elements
+
+Murals and Thangkas:
+
+Depict Buddhist deities, historical events, and religious teachings
+
+Serve as teaching tools and devotional art
+
+Woodwork and Carvings:
+
+Represent motifs such as lotus, vajra, dragons, and auspicious symbols
+
+Demonstrates the high craftsmanship and symbolic literacy of Sikkimese artisans
+
+Integration with Landscape:
+
+Monasteries are strategically built on hilltops or terraces, blending architecture with Himalayan topography and emphasizing spiritual prominence`
+  },
+  "thangka-006": {
+    title: "Medicine Buddha Thangka (Bhaisajyaguru) — History, Tradition, and Report",
+    content: `1. Overview
+
+Name: Medicine Buddha (Bhaisajyaguru, Tib. Sangye Menla)
+Type: Thangka painting / sacred artwork
+Location: Rumtek Monastery, Sikkim (example)
+Purpose: Visual representation for devotional practice, healing rituals, and meditation; serves as a teaching and inspirational tool in Mahayana and Vajrayana Buddhism
+
+2. Historical Background
+
+Origins of the Medicine Buddha Cult:
+
+Textual basis in the Bhaisajyaguru-vaiḍūrya-prabhā-rāja-sūtra (Sutra of the Medicine Master, 1st–5th century CE in India)
+
+Spread to Tibet and Himalayan regions during the 7th–9th centuries alongside other Mahayana texts and tantric practices
+
+Became central to healing rituals, both physical and spiritual
+
+Transmission to Sikkim and Tibet:
+
+Tibetan artists developed a distinctive thangka style, preserving Indian iconography while incorporating local aesthetic and symbolic elements
+
+Rumtek Monastery holds notable examples reflecting high artistic craftsmanship and ritual importance
+
+Dating:
+
+Traditional thangkas follow centuries-old iconographic conventions; specific sets may be modern or historical (17th–20th centuries)
+
+3. Iconography and Symbolism
+
+Central Figure: Medicine Buddha with deep blue body, symbolizing the healing power of lapis lazuli
+
+Attributes:
+
+Bowl of healing nectar in left hand
+
+Myrobalan plant or medicinal herbs in right hand
+
+Often seated on a lotus throne, in meditation posture (dhyana mudra)
+
+Accompanying Figures:
+
+Bodhisattvas of healing, protective deities, or enlightened disciples
+
+Symbolic Meaning:
+
+Blue color = purity, healing, and medicine
+
+Lotus = purity and spiritual awakening
+
+Hand attributes = skillful means for curing physical and spiritual ailments
+
+4. Religious and Ritual Use
+
+Healing Rituals:
+
+Thangka is used in ceremonies invoking the curative power of the Medicine Buddha for individuals and communities
+
+Integral to Tibetan Buddhist medical practice and ritual healing
+
+Meditation and Visualization:
+
+Practitioners meditate on the Buddha, visualizing his attributes and reciting associated mantras for spiritual and physical well-being
+
+Devotional Practices:
+
+Displayed during festivals, pujas, and consecration ceremonies
+
+Serves as a focus for prayers, offerings, and merit-making
+
+5. Artistic Tradition
+
+Medium: Cotton or silk thangka with mineral and organic pigments, occasionally highlighted with gold or silver
+
+Stylistic Features:
+
+Bright, vivid colors emphasizing symbolic meaning
+
+Detailed depiction of figure, clothing, lotus throne, and surrounding elements
+
+Conforms to Tibetan iconographic guidelines, ensuring correct proportion, color, and symbolic attributes
+
+Scale and Display:
+
+Can range from small personal thangkas to large ceremonial thangkas for temple halls
+
+Often framed with silk brocade for display and protection
+
+6. Preservation and Conservation
+
+Challenges:
+
+Exposure to light, humidity, smoke from butter lamps
+
+Insect damage, fading pigments, and wear of silk borders
+
+Conservation Approaches:
+
+Climate-controlled storage when not in use
+
+Gentle cleaning and repair by trained thangka conservators
+
+Digital archiving for scholarly study and to reduce physical handling
+
+7. Cultural and Religious Significance
+
+Healing and Compassion: Embodies spiritual and physical healing, central to Mahayana practice
+
+Educational: Teaches iconography, symbolism, and ritual procedure
+
+Artistic Heritage: Preserves traditional Tibetan painting techniques and religious motifs
+
+Community Role: Used in temple rituals, festivals, and personal devotional practice`
+  }
+}
+
+export interface ArchiveItem {
+  id: string
+  title: string
+  type: string
+  monastery: string
+  date: string
+  description: string
+  image: string
+  category: string
+  language: string
+  condition: string
+  digitized: boolean
+  downloads: number
+  views: number
+  tags: string[]
+}
+
+export function generateArchivePDF(archiveItem: ArchiveItem): void {
+  const report = archiveReports[archiveItem.id as keyof typeof archiveReports]
+  
+  if (!report) {
+    console.error('No report found for archive item:', archiveItem.id)
+    alert('PDF report not available for this archive item.')
+    return
+  }
+
+  // Create new PDF document
+  const pdf = new jsPDF()
+  
+  // Set font
+  pdf.setFont('helvetica')
+  
+  // Add title
+  pdf.setFontSize(20)
+  pdf.setFont('helvetica', 'bold')
+  pdf.text(report.title, 20, 30)
+  
+  // Add archive item details
+  pdf.setFontSize(12)
+  pdf.setFont('helvetica', 'normal')
+  pdf.text(`Archive Item: ${archiveItem.title}`, 20, 50)
+  pdf.text(`Monastery: ${archiveItem.monastery}`, 20, 60)
+  pdf.text(`Date: ${archiveItem.date}`, 20, 70)
+  pdf.text(`Category: ${archiveItem.category}`, 20, 80)
+  pdf.text(`Condition: ${archiveItem.condition}`, 20, 90)
+  
+  // Add separator line
+  pdf.setLineWidth(0.5)
+  pdf.line(20, 100, 190, 100)
+  
+  // Add report content
+  pdf.setFontSize(10)
+  const pageWidth = pdf.internal.pageSize.getWidth()
+  const pageHeight = pdf.internal.pageSize.getHeight()
+  const margin = 20
+  const maxWidth = pageWidth - (margin * 2)
+  
+  // Split content into lines that fit the page width
+  const lines = pdf.splitTextToSize(report.content, maxWidth)
+  
+  let yPosition = 110
+  const lineHeight = 6
+  
+  for (let i = 0; i < lines.length; i++) {
+    // Check if we need a new page
+    if (yPosition > pageHeight - 30) {
+      pdf.addPage()
+      yPosition = 20
+    }
+    
+    pdf.text(lines[i], margin, yPosition)
+    yPosition += lineHeight
+  }
+  
+  // Add footer
+  const pageCount = pdf.getNumberOfPages()
+  for (let i = 1; i <= pageCount; i++) {
+    pdf.setPage(i)
+    pdf.setFontSize(8)
+    pdf.text(`Monastery360 Digital Archive Report - Page ${i} of ${pageCount}`, pageWidth - 60, pageHeight - 10)
+    pdf.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, pageHeight - 10)
+  }
+  
+  // Download the PDF
+  const fileName = `${archiveItem.title.replace(/[^a-zA-Z0-9]/g, '_')}_Report.pdf`
+  pdf.save(fileName)
+}
